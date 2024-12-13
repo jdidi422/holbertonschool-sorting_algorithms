@@ -1,88 +1,84 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
- * quick_sort - function that sorts an array of ints in ascending order
- * using quick sort algorithm
- * @array: list of numbers
- * @size: size of array
+ * swapp- swaps two values in an array
+ * @array: data to sort
+ * @a: first value
+ * @b: second value
+ * @size: size of data
+ * Return: void
  */
-
-void quick_sort(int *array, size_t size)
+void swapp(int *array, int a, int b, int size)
 {
-	int low;
-	int high;
+	int temp;
 
-	if (array == NULL || size == 0)
-		return;
-
-	low = 0;
-	high = size - 1;
-
-	my_sort(array, low, high, size);
-}
-
-/**
- * my_sort - sorts array using low / high positions
- * @array: list of numbers
- * @low: first index of array
- * @high: last index of array
- * @size: size of array
- */
-void my_sort(int *array, int low, int high, size_t size)
-{
-	int p;
-
-	if (low < high)
+	if (array[a] != array[b])
 	{
-		p = partition(array, low, high, size);
-		my_sort(array, low, p - 1, size);
-		my_sort(array, p + 1, high, size);
+		temp = array[a];
+		array[a] = array[b];
+		array[b] = temp;
+		print_array(array, size);
 	}
 }
 
 /**
- * partition - sections an array using Lomuto quick_sort algo
- * @array: list of integers
- * @low: first index of array
- * @high: lowest index of array
- * @size: size of array
- * Return: position of pivot in array
+ * partition - sorts a partition of data in relation to a pivot
+ * @array: data to sort
+ * @min: Left wall
+ * @max: right wall
+ * @size: size of data
+ * Return: New Pivot
  */
-int partition(int *array, int low, int high, size_t size)
+int partition(int *array, int min, int max, size_t size)
 {
-	int pivot;
-	int i;
-	int j;
+	int i = min, j, piv = array[max];
 
-	pivot = array[high];
-	i = low - 1;
-
-	for (j = low; j <= high; j++)
+	for (j = min; j <= max; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < piv)
 		{
+			swapp(array, i, j, size);
 			i++;
-			if (i != j)
-			{
-				swap(array, i, j);
-				print_array(array, size);
-			}
 		}
+
 	}
+	swapp(array, i, max, size);
+
 	return (i);
 }
 
 /**
- * swap - swap values in array
- * @array: list of ints
- * @i: first element to swap
- * @j: second element to swap
+ * q_sort - Quick sort algorithm
+ * @array: data to sort
+ * @min: Left wall
+ * @max: right wall
+ * @size: size of data
+ *
+ * Return: No Return
  */
-void swap(int *array, int i, int j)
+void q_sort(int *array, int min, int max, size_t size)
 {
-	int temp;
+	int i;
 
-	temp = array[i];
-	array[i] = array[j];
-	array[j] = temp;
+	if (min < max)
+	{
+		i = partition(array, min, max, size);
+		q_sort(array, min, i - 1, size);
+		q_sort(array, i + 1, max, size);
+	}
+}
+
+/**
+ * quick_sort -  Quick sort algorithme
+ * @array: data to sort
+ * @size: size of data
+ * Return: No Return
+ */
+void quick_sort(int *array, size_t size)
+{
+	if (size < 2)
+		return;
+
+	q_sort(array, 0, size - 1, size);
 }
