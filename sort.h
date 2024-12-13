@@ -1,4 +1,5 @@
-
+#ifndef sort
+#define sort
 #include "sort.h"
 #include <stdlib.h>
 #include <stdio.h>
