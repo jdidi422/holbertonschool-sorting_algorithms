@@ -1,15 +1,14 @@
+
 #include "sort.h"
 
 
 /**
- * swapp - Swaps two values in an array
- * @array: The array to sort
- * @a: Index of the first value
- * @b: Index of the second value
- * @size: The total number of elements in the array
- *
- * This function swaps the elements at indices `a` and `b` in the array.
- * After swapping, it prints the array using `print_array`.
+ * swapp- swaps two values in an array
+ * @array: data to sort
+ * @a: first value
+ * @b: second value
+ * @size: size of data
+ * Return: void
  */
 void swapp(int *array, int a, int b, int size)
 {
@@ -25,15 +24,12 @@ void swapp(int *array, int a, int b, int size)
 }
 
 /**
- * partition - Partitions the array around a pivot
- * @array: The array to sort
- * @min: The left boundary of the partition
- * @max: The right boundary of the partition (pivot)
- * @size: The total number of elements in the array
- *
- * This function places all elements smaller than the pivot to the left
- * and all elements greater than the pivot to the right.
- * It returns the new index of the pivot.
+ * partition - sorts a partition of data in relation to a pivot
+ * @array: data to sort
+ * @min: Left wall
+ * @max: right wall
+ * @size: size of data
+ * Return: New Pivot
  */
 int partition(int *array, int min, int max, size_t size)
 {
@@ -45,23 +41,22 @@ int partition(int *array, int min, int max, size_t size)
 		{
 			swapp(array, i, j, size);
 			i++;
-	
-    	}
-	
-    }
+		}
+
+	}
 	swapp(array, i, max, size);
 
 	return (i);
 }
 
 /**
- * q_sort - Recursive quick sort algorithm
- * @array: The array to sort
- * @min: The left boundary of the partition
- * @max: The right boundary of the partition
- * @size: The total number of elements in the array
+ * q_sort - Quick sort algorithm
+ * @array: data to sort
+ * @min: Left wall
+ * @max: right wall
+ * @size: size of data
  *
- * This function sorts the array recursively using the quick sort algorithm.
+ * Return: No Return
  */
 void q_sort(int *array, int min, int max, size_t size)
 {
@@ -76,12 +71,10 @@ void q_sort(int *array, int min, int max, size_t size)
 }
 
 /**
- * quick_sort - Main function for the quick sort algorithm
- * @array: The array to sort
- * @size: The total number of elements in the array
- *
- * This function initializes the quick sort process by calling `q_sort`.
- * If the array has fewer than 2 elements, no sorting is performed.
+ * quick_sort -  Quick sort algorithme
+ * @array: data to sort
+ * @size: size of data
+ * Return: No Return
  */
 void quick_sort(int *array, size_t size)
 {
