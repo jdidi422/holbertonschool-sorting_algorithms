@@ -59,11 +59,11 @@ void swap_forward(listint_t *c)
 		c->next->next = c;
 		c->next = NULL;
 	}
-	head = c;
-	while (head->prev != NULL)
-		head = head->prev;
-	print_list(head);
-	swap_backward(c->prev);
+head = c;
+while (head->prev != NULL)
+head = head->prev;
+print_list(head);
+swap_backward(c->prev);
 }
 /**
  * insertion_sort_list -sort a doubly linked list with insert algorithm
@@ -72,21 +72,22 @@ void swap_forward(listint_t *c)
  **/
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *c;
+listint_t *c;
 
-	if ((list == NULL) || (*list == NULL) || ((*list)->next == NULL))
-		return;
-	c = *list;
+if ((list == NULL) || (*list == NULL) || ((*list)->next == NULL))
+return;
 
-	while (c->next != NULL)
-	{
-		if (c->n > c->next->n)
-		{
-			swap_forward(c);
-		}
-		else
-			c = c->next;
-	}
-	while ((*list)->prev != NULL)
-		*list = (*list)->prev;
+c = *list;
+
+while (c->next != NULL)
+{
+if (c->n > c->next->n)
+{
+swap_forward(c);
+}
+else
+c = c->next;
+}
+while ((*list)->prev != NULL)
+*list = (*list)->prev;
 }
